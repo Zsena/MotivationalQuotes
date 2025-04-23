@@ -1,0 +1,44 @@
+# .NET & WebSharper
+bin/
+obj/
+*.fsproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vsp
+
+# VS / Rider
+.vs/
+.idea/
+
+# WebSharper
+*.log
+websharper.log
+/src/client/websharper.log
+wwwroot/Scripts/WebSharper/
+
+
+# Node/npm/Yarn/Pnpm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+package-lock.json
+
+# Tailwind, dist, output
+wwwroot/style.css
+/dist/
+/skeleton/
+/src/client/wwwroot/
+/src/client/Scripts
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.tmp
+*~
