@@ -13,15 +13,26 @@ module Templates =
 [<JavaScript>]
 module Client =
 
+    let quotes = [
+        "Push yourself, because no one else is going to do it for you."
+        "Great things never come from comfort zones."
+        "Don’t stop when you’re tired. Stop when you’re done."
+        "Wake up with determination. Go to bed with satisfaction."
+    ]
+
+    let rand = System.Random()
+
+    let getRandomQuote () =
+        quotes.[rand.Next(quotes.Length)]
+
     let Main () =
-        let rvReversed = Var.Create ""
-        Templates.MainTemplate.MainForm()
-            .OnSend(fun e ->
+        let currentQuote = Var.Create "Click the button to get a quote!"
+        Templates.MainTemplate.MotivationPage()
+            .OnGetQuote(fun _ ->
                 async {
-                    let! res = Server.DoSomething e.Vars.TextToReverse.Value
-                    rvReversed := res
-                }
-                |> Async.StartImmediate
+                    let! quote = getQuoteFromAPI ()
+                    currentQuote.Value <- quote
+                } |> Async.Start
             )
-            .Reversed(rvReversed.View)
+            .QuoteText(currentQuote.View)
             .Doc()
